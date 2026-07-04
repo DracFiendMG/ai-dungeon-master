@@ -50,7 +50,7 @@ class DungeonMaster:
         """Query the memory graph and return relevant facts as strings."""
         results = await cognee.recall(
             query_text=query,
-            dataset_name=self.dataset,
+            datasets=[self.dataset],
             top_k=top_k
         )
         return [r.text for r in results]
@@ -62,7 +62,7 @@ class DungeonMaster:
     async def forget(self, query: str):
         """Remove specific memory entries."""
         try:
-            results = await cognee.search(query, dataset_name=self.dataset)
+            results = await cognee.search(query, datasets=[self.dataset])
         except Exception:
             results = []
 

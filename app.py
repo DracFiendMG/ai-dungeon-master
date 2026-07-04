@@ -38,7 +38,7 @@ async def add_to_memory(user_text, dm_text):
     await cognee.cognify()
 
 async def search_memory(query, k=3):
-    results = await cognee.search(query, dataset_name=DATASET_NAME)
+    results = await cognee.search(query, datasets=[DATASET_NAME])
     snippets = []
     for r in results[:k]:
         if hasattr(r, 'text'):
